@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2A4F2E79-B5A6-42B4-B2AB-353B366B9398}</ProjectGuid>
+    <ProjectGuid>{8A547A42-8AC5-4645-A5A0-319CB0358612}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Utilidades</RootNamespace>
-    <AssemblyName>Utilidades</AssemblyName>
+    <RootNamespace>EscreveTXT</RootNamespace>
+    <AssemblyName>EscreveTXT</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
