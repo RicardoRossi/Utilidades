@@ -14,7 +14,7 @@ namespace ConfereBaanXDesenho
             try
             {
                 var listaDeLinhasDoArquivo = new List<string>();
-                using (var reader = new StreamReader(@"C:\RELATORIO\4020001-4020256.txt", Encoding.Default))
+                using (var reader = new StreamReader(@"C:\RELATORIO\bom.txt", Encoding.Default))
                 {
                     while (!reader.EndOfStream)
                     {
@@ -146,5 +146,4 @@ namespace ConfereBaanXDesenho
 
         }
     }
-
 }

@@ -21,7 +21,7 @@ namespace LerBillOfMaterial
             swApp = SW.Get_swApp();
             //swApp.SendMsgToUser("teste conectado!");
 
-            IEnumerable<int> codigos = Enumerable.Range(4020001, 2);
+            IEnumerable<int> codigos = Enumerable.Range(4020001, 256);
             string fullPath;
             try
             {
@@ -30,7 +30,14 @@ namespace LerBillOfMaterial
                     int erro = 0, aviso = 0;
                     fullPath = $@"C:\ELETROFRIO\ENGENHARIA SMR\PRODUTOS FINAIS ELETROFRIO\MECÂNICA\RACK PADRAO\RACK PADRAO TESTE\{codigo}.SLDDRW";
                     //swApp.DocumentVisible(false, (int)swDocumentTypes_e.swDocDRAWING);
-                    swModel = swApp.OpenDoc6(fullPath, (int)swDocumentTypes_e.swDocDRAWING, (int)swOpenDocOptions_e.swOpenDocOptions_ReadOnly, "", erro, aviso);
+                    swModel = swApp.OpenDoc6(fullPath, (int)swDocumentTypes_e.swDocDRAWING, (int)swOpenDocOptions_e.swOpenDocOptions_RapidDraft, "", erro, aviso);
+                    if (swModel==null)
+                    {
+                        Console.WriteLine("Erro: " + erro);
+                        Console.WriteLine("Aviso: " + aviso);
+                        continue;
+                    }
+                    
                     DrawingDoc swDraw = (DrawingDoc)swModel;
                     View swActiveView;
                     View swSheetView;
@@ -71,6 +78,7 @@ namespace LerBillOfMaterial
                     {
                         Console.WriteLine("Não pegou a table annotation");
                     }
+                    EscreveTXT(listaDeCodigos);
                     swApp.CloseAllDocuments(true);
                     Console.WriteLine(codigo);
                 }
