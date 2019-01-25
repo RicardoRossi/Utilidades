@@ -14,7 +14,7 @@ namespace ConfereBaanXDesenho
             try
             {
                 var listaDeLinhasDoArquivo = new List<string>();
-                using (var reader = new StreamReader(@"C:\RELATORIO\bom.txt", Encoding.Default))
+                using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do SolidWorks.txt", Encoding.Default))
                 {
                     while (!reader.EndOfStream)
                     {
@@ -120,21 +120,28 @@ namespace ConfereBaanXDesenho
                 var listaDeRackFinal = new List<Rack>();
                 foreach (var r in listaDeRackSemCodigo)
                 {
-                    novoRack = new Rack() { codigoDoRack = r.ListaDeComponentes.First<Componente>().codigo.Replace(";", "") };
+                    novoRack = new Rack() { codigoDoRack = r.ListaDeComponentes.First<Componente>().codigo.Replace(";", "").TrimStart(' ') };
                     var arrayDeComponentes = r.ListaDeComponentes.ToArray<Componente>(); //Converte lista em array
                     for (int i = 1; i < arrayDeComponentes.Length; i++) //Inicia do index 1, pois o index 0 já foi usado para codificar o rack
                     {
                         novoRack.ListaDeComponentes.Add(arrayDeComponentes[i]); //A partir do index 1 são componentes do rack.
                     }
+                    novoRack.ListaDeComponentes.OrderBy(x => x.codigo); // LINQ para ordenar a lista
                     listaDeRackFinal.Add(novoRack);
                 }
 
-                foreach (var rackFinal in listaDeRackFinal)
-                {
-                    Console.WriteLine("\n"+ rackFinal.codigoDoRack);
-                }
+                //foreach (var rackFinal in listaDeRackFinal)
+                //{
+                //    Console.WriteLine(";\n" + rackFinal.codigoDoRack);
+                //    foreach (var comp in rackFinal.ListaDeComponentes)
+                //    {
+                //        Console.WriteLine(comp.codigo + ";" + comp.qt);
+                //    }
+                //}
+                //Console.WriteLine(";");
 
-                Console.WriteLine("\n" + "Quantide de racks: " + listaDeRackFinal.Count);
+                EscreveTXT(listaDeRackFinal);
+                Console.WriteLine("Quantide de racks: " + listaDeRackFinal.Count);
 
                 Console.ReadKey();
 
@@ -144,6 +151,29 @@ namespace ConfereBaanXDesenho
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        static void EscreveTXT(List<Rack> listaDeRackFinal)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\ListaDoSolidWorks.txt"))
+                {
+                    foreach (var rackFinal in listaDeRackFinal)
+                    {
+                        sw.WriteLine(rackFinal.codigoDoRack);
+                        foreach (var comp in rackFinal.ListaDeComponentes)
+                        {
+                            sw.WriteLine(comp.codigo + ";" + comp.qt);
+                        }
+                        sw.WriteLine(";");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
