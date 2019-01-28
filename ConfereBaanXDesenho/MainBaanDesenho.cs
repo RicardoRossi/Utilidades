@@ -42,7 +42,7 @@ namespace ConfereBaanXDesenho
 
             //EscreveTXT(rackDoBaan);
             //EscreveTXT(rackDoSolidworks);
-            //Console.ReadKey();
+            Console.ReadKey();
         }
 
         static void EscreveTXT(List<Rack> listaDeRackFinal, string fullPathOutTxt)
