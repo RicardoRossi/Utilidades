@@ -14,7 +14,9 @@ namespace ConfereBaanXDesenho
             try
             {
                 var listaDeLinhasDoArquivo = new List<string>();
-                using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do Baan.txt", Encoding.Default))
+                //using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do Baan.txt", Encoding.Default))
+                using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do SolidWorks.txt", Encoding.Default))
+
                 {
                     while (!reader.EndOfStream)
                     {
@@ -157,7 +159,7 @@ namespace ConfereBaanXDesenho
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\outBaan.txt"))
+                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\outSW.txt"))
                 {
                     foreach (var rackFinal in listaDeRackFinal)
                     {
