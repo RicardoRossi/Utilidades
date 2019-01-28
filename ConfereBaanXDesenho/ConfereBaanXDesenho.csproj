@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Componente.cs" />
+    <Compile Include="ListaRack.cs" />
     <Compile Include="MainBaanDesenho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rack.cs" />
