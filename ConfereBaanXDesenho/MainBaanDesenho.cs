@@ -14,9 +14,7 @@ namespace ConfereBaanXDesenho
             try
             {
                 var listaDeLinhasDoArquivo = new List<string>();
-                //using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do Baan.txt", Encoding.Default))
-                using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do SolidWorks.txt", Encoding.Default))
-
+                using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do Baan.txt", Encoding.Default))
                 {
                     while (!reader.EndOfStream)
                     {
@@ -159,16 +157,32 @@ namespace ConfereBaanXDesenho
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\outSW.txt"))
+                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\outBaan.txt"))
                 {
                     foreach (var rackFinal in listaDeRackFinal)
                     {
-                        sw.WriteLine(rackFinal.codigoDoRack);
-                        foreach (var comp in rackFinal.ListaDeComponentes)
+                        var flex = rackFinal.ListaDeComponentes.Select(x => x.codigo.Contains("2002211") || x.codigo.Contains("2002212") || x.codigo.Contains("2002213"));
+                        Console.WriteLine(rackFinal.codigoDoRack);
+                        foreach (var f in flex)
                         {
-                            sw.WriteLine(comp.codigo + ";" + comp.qt);
+                            if (f == false)
+                            {
+                               continue;
+                            }
+                            else if (f == true)
+                            {
+                                //Console.WriteLine(rackFinal.codigoDoRack);
+                                Console.WriteLine("\b---");
+                            }
                         }
-                        sw.WriteLine(";");
+
+                        //sw.WriteLine(rackFinal.codigoDoRack);
+
+                        //foreach (var comp in rackFinal.ListaDeComponentes)
+                        //{
+                        //    sw.WriteLine(comp.codigo + ";" + comp.qt);
+                        //}
+                        //sw.WriteLine(";");
                     }
                 }
             }
