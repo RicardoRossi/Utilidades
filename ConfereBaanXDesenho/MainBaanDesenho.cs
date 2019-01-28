@@ -21,57 +21,46 @@ namespace ConfereBaanXDesenho
             var ListaBaanOrder = rackDoBaan.OrderBy(x => x.codigoDoRack);
             IEnumerable<Componente> compOrderSw;
             IEnumerable<Componente> compOrderBaan;
-            //foreach (var sw in ListaSwOrder)
-            //{
-            //    compOrderSw = sw.ListaDeComponentes.OrderBy(x => x.codigo);
-            //    Console.WriteLine(sw.codigoDoRack);
-            //    foreach (var item in compOrderSw)
-            //    {
-            //        Console.WriteLine(item.codigo + ";" + item.qt);
-            //    }
-            //}
 
-            //Console.WriteLine();
-            //Console.WriteLine("---------------------------------------------------------------------------");
+            Rack[,] racks= new Rack[10000,10000];
 
+            var rackSw = new List<Rack>();
+            foreach (var sw in ListaSwOrder)
+            {
+                //compOrderSw = sw.ListaDeComponentes.OrderBy(x => x.codigo);
+                rackSw.Add(sw);
+            }
+            EscreveTXT(rackSw, @"C:\RELATORIO\outSw.txt");
+
+            var rackBa = new List<Rack>();
             foreach (var ba in ListaBaanOrder)
             {
-                compOrderBaan = ba.ListaDeComponentes.OrderBy(x => x.codigo);
-                Console.WriteLine(ba.codigoDoRack);
-                foreach (var item in compOrderBaan)
-                {
-                    Console.WriteLine(item.codigo + ";" + item.qt);
-                }
+                //compOrderBaan = ba.ListaDeComponentes.OrderBy(x => x.codigo);
+                rackBa.Add(ba);
             }
+            EscreveTXT(rackBa, @"C:\RELATORIO\outBaan.txt");
 
             //EscreveTXT(rackDoBaan);
             //EscreveTXT(rackDoSolidworks);
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
-        static void EscreveTXT(List<Rack> listaDeRackFinal)
+        static void EscreveTXT(List<Rack> listaDeRackFinal, string fullPathOutTxt)
         {
             try
             {
                 var i = 0;
-                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\outBaan.txt"))
+                using (StreamWriter sw = new StreamWriter(fullPathOutTxt))
                 {
                     foreach (var rackFinal in listaDeRackFinal)
                     {
-
-
-                        var flex = rackFinal.ListaDeComponentes.Select(x => x.codigo.Contains("3010001"));
-
-                        foreach (var f in flex)
+                        //var flex = rackFinal.ListaDeComponentes.Select(x => x.codigo.Contains("3010001"));
+                        sw.WriteLine(rackFinal.codigoDoRack);
+                        foreach (var item in rackFinal.ListaDeComponentes.OrderBy(x=>x.codigo))
                         {
-                            if (f == true)
-                            {
-                                i++;
-                            }
+                            sw.WriteLine(item.codigo + ";" + item.qt);
                         }
-
-                    }
-                    Console.WriteLine(i);
+                    }                   
                 }
             }
             catch (Exception ex)

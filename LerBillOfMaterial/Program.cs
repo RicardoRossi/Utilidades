@@ -78,10 +78,11 @@ namespace LerBillOfMaterial
                     {
                         Console.WriteLine("Não pegou a table annotation");
                     }
-                    EscreveTXT(listaDeCodigos);
+                    //EscreveTXT(listaDeCodigos);
                     swApp.CloseAllDocuments(true);
                     Console.WriteLine(codigo);
                 }
+                EscreveTXT(listaDeCodigos);
             }
             finally
             {
@@ -127,7 +128,7 @@ namespace LerBillOfMaterial
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\bom.txt"))
+                using (StreamWriter sw = new StreamWriter(@"C:\RELATORIO\bom2Dsw.txt"))
                 {
                     foreach (var codigo in listaDeCodigos)
                     {
