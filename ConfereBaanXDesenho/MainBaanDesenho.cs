@@ -165,30 +165,18 @@ namespace ConfereBaanXDesenho
                     {
                         var i = 0;
 
-                        var flex = rackFinal.ListaDeComponentes.Select(x => x.codigo.Contains("2002211") || x.codigo.Contains("2002212") || x.codigo.Contains("2002213"));
+                        var flex = rackFinal.ListaDeComponentes.Select(x => x.codigo.Contains("3010001"));
                         //Console.WriteLine(rackFinal.codigoDoRack);
 
                         foreach (var f in flex)
                         {
-                            if (f == false)
+                            if (f == true)
                             {
                                 //Console.WriteLine(rackFinal.codigoDoRack);
                                 i++;
                             }
                         }
-                        //Console.WriteLine(i);
-                        if (i == rackFinal.ListaDeComponentes.Count)
-                        {
-                            Console.WriteLine(rackFinal.codigoDoRack);
-                        }
-
-                        //sw.WriteLine(rackFinal.codigoDoRack);
-
-                        //foreach (var comp in rackFinal.ListaDeComponentes)
-                        //{
-                        //    sw.WriteLine(comp.codigo + ";" + comp.qt);
-                        //}
-                        //sw.WriteLine(";");
+                        Console.WriteLine(i);
                     }
                 }
             }
