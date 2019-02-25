@@ -17,7 +17,6 @@ namespace ConfereBaanXDesenho
                 var listaDeLinhasDoArquivo = new List<string>();
                 //using (var reader = new StreamReader(@"C:\Users\54808\source\repos\Utilidades\4020001-4020256 - do Baan.txt", Encoding.Default))
                 using (var reader = new StreamReader(fullPath, Encoding.Default))
-
                 {
                     while (!reader.EndOfStream)
                     {
